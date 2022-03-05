@@ -1,9 +1,13 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { auth } from "../../firebase";
 import "./index.scss";
 
-function Header(props) {
+function Header({ currentUser }) {
+  const handleSignOut = () => auth.signOut();
+
   return (
     <div className="header-wrapper">
       <div className="header">
@@ -17,12 +21,23 @@ function Header(props) {
           <Link className="option" to="/shop">
             CONTACT
           </Link>
+          {currentUser ? (
+            <div className="option" onClick={handleSignOut}>
+              SIGN OUT
+            </div>
+          ) : (
+            <Link className="option" to="/auth">
+              SIGN IN
+            </Link>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-Header.propTypes = {};
+Header.propTypes = {
+  currentUser: PropTypes.object,
+};
 
 export default React.memo(Header);
