@@ -1,3 +1,3 @@
-import { menuItem } from "./dummy";
+import { menuItem, shopDataDefault } from "./dummy";
 
-export { menuItem };
+export { menuItem, shopDataDefault };
