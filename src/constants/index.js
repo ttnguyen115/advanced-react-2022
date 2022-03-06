@@ -1,3 +1,3 @@
-import { menuItem, shopDataDefault } from "./dummy";
+import { menuItem, shopDataDefault, COLLECTION_ID_MAP } from "./dummy";
 
-export { menuItem, shopDataDefault };
+export { menuItem, shopDataDefault, COLLECTION_ID_MAP };
