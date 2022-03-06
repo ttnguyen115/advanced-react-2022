@@ -1,8 +1,15 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../store/actions/cartAction";
+import CustomButton from "../CustomButton";
 import "./index.scss";
 
-function CollectionItem({ id, name, price, imageUrl }) {
+function CollectionItem({ item }) {
+  const dispatch = useDispatch();
+  const { id, name, price, imageUrl } = item;
+  const handleAddItem = () => dispatch(addItem(item));
+
   return (
     <div className="collection-item">
       <div
@@ -13,15 +20,15 @@ function CollectionItem({ id, name, price, imageUrl }) {
         <span className="item-name">{name}</span>
         <span className="item-price ">{price}</span>
       </div>
+      <CustomButton inverted onClick={handleAddItem}>
+        Add to cart
+      </CustomButton>
     </div>
   );
 }
 
 CollectionItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 export default CollectionItem;

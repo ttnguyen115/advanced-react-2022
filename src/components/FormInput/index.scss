@@ -16,7 +16,7 @@ $primary-color: #000;
   background: none;
   background-color: #fff;
   color: $secondary-color;
-  font-style: 18px;
+  font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
   width: 100%;
@@ -40,7 +40,7 @@ input[type="password"] {
 
 .form-input-label {
   color: $secondary-color;
-  font-style: 16px;
+  font-size: 16px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;

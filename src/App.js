@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { auth, createUserProfileDocument } from "./firebase";
 import { setCurrentUser } from "./store/actions/userAction";
 import AuthPage from "./views/AuthPage";
+import CheckoutPage from "./views/CheckoutPage";
 import Homepage from "./views/Homepage";
 import ShoppingPage from "./views/ShoppingPage";
 
@@ -42,6 +43,7 @@ function App() {
           element={currentUser ? <Navigate to="/" /> : <AuthPage />}
         />
         <Route path="/shop" element={<ShoppingPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/" element={<Homepage />} />
       </Routes>
     </div>
