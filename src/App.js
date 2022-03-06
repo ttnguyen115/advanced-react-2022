@@ -42,7 +42,7 @@ function App() {
           path="/auth"
           element={currentUser ? <Navigate to="/" /> : <AuthPage />}
         />
-        <Route path="/shop" element={<ShoppingPage />} />
+        <Route path="/shop/*" element={<ShoppingPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/" element={<Homepage />} />
       </Routes>

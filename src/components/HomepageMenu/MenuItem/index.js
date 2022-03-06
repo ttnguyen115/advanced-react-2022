@@ -5,7 +5,10 @@ import "./index.scss";
 
 function MenuItem({ title, imageUrl, size, linkUrl }) {
   return (
-    <Link className={`${size || ""} directory-menu_item`} to={linkUrl}>
+    <Link
+      className={`${size || ""} directory-menu_item`}
+      to={linkUrl}
+    >
       <div
         className="background-image"
         style={{

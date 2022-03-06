@@ -1,12 +1,16 @@
 import React from "react";
-import { menuItem } from "../../constants";
+import { useSelector } from "react-redux";
+import { selectDirectorySections } from "../../store/actions/directory/reselect";
 import "./index.scss";
 import MenuItem from "./MenuItem";
 
 function HomepageMenu(props) {
+  const state = useSelector(state => state);
+  const sections = selectDirectorySections(state);
+
   return (
     <div className="directory-menu">
-      {menuItem.map((item) => {
+      {sections.map((item) => {
         const { title, id, imageUrl, size, linkUrl } = item;
         return (
           <MenuItem

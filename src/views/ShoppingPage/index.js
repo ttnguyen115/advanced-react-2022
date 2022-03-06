@@ -1,14 +1,26 @@
 import React from "react";
-import PreviewCollection from "../../components/PreviewCollection";
-import { shopDataDefault } from "../../constants";
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import CollectionOverview from "../../components/CollectionOverview";
+import { selectCollections } from "../../store/actions/shop/reselect";
+import CollectionPage from "../CollectionPage";
 
 function ShoppingPage(props) {
+  const state = useSelector((state) => state);
+  const collections = selectCollections(state);
+
   return (
     <div className="shopping-page">
-      {shopDataDefault.map((collection) => {
-        const { id, ...collectionProps } = collection;
-        return <PreviewCollection key={id} {...collectionProps} />;
-      })}
+      <Routes>
+        <Route
+          path="/"
+          element={<CollectionOverview collections={collections} />}
+        />
+        <Route
+          path=":collectionId"
+          element={<CollectionPage collections={collections} />}
+        />
+      </Routes>
     </div>
   );
 }
