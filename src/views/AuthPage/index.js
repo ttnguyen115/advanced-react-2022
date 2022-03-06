@@ -1,15 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Signin from '../../components/AuthForm/Signin'
+import React from "react";
+import Signin from "../../components/Signin";
+import Signup from "../../components/Signup";
+import "./index.scss";
 
 function AuthPage(props) {
   return (
     <div className="auth-page">
       <Signin />
+      <Signup />
     </div>
-  )
+  );
 }
 
-AuthPage.propTypes = {}
+AuthPage.propTypes = {};
 
-export default AuthPage
+export default AuthPage;

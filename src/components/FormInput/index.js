@@ -4,6 +4,7 @@ import "./index.scss";
 
 function FormInput({ handleChange, label, ...formInputProps }) {
   const { value } = formInputProps;
+
   return (
     <div className="group">
       <input
