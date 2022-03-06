@@ -1,7 +1,7 @@
 import React from "react";
-import Signin from "../../components/AuthForm/Signin";
-import Signup from "../../components/AuthForm/Signup";
-import './index.scss';
+import Signin from "../../components/Signin";
+import Signup from "../../components/Signup";
+import "./index.scss";
 
 function AuthPage(props) {
   return (

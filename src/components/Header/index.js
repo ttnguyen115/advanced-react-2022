@@ -1,12 +1,19 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase";
 import "./index.scss";
 
-function Header({ currentUser }) {
-  const handleSignOut = () => auth.signOut();
+function Header() {
+  const { user } = useSelector((state) => state);
+  const currentUser = user;
+
+  const handleSignOut = () => {
+    auth.signOut();
+    
+  }
 
   return (
     <div className="header-wrapper">

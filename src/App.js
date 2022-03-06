@@ -1,13 +1,17 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import { auth, createUserProfileDocument } from "./firebase";
+import { setCurrentUser } from "./store/actions/userAction";
 import AuthPage from "./views/AuthPage";
 import Homepage from "./views/Homepage";
 import ShoppingPage from "./views/ShoppingPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState(null);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state);
+  const { currentUser } = user;
 
   React.useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -19,20 +23,24 @@ function App() {
             id: snapShot.id,
             ...snapShot.data(),
           };
-          setCurrentUser(currentUserProfile);
+          dispatch(setCurrentUser(currentUserProfile));
         });
       }
-      setCurrentUser(userAuth);
+
+      dispatch(setCurrentUser(userAuth));
     });
 
     return () => unsubscribeFromAuth();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Routes>
-        <Route path="/auth" element={<AuthPage />} />
+        <Route
+          path="/auth"
+          element={currentUser ? <Navigate to="/" /> : <AuthPage />}
+        />
         <Route path="/shop" element={<ShoppingPage />} />
         <Route path="/" element={<Homepage />} />
       </Routes>
