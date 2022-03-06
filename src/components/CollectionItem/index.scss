@@ -4,6 +4,26 @@
   flex-direction: column;
   height: 350px;
   align-items: center;
+  position: relative;
+
+  &:hover {
+    .item-image {
+      opacity: 0.8;
+    }
+  
+    .custom-button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
+
+  .custom-button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+  }
 }
 
 .item-image {
@@ -19,7 +39,7 @@
   height: 5%;
   display: flex;
   justify-content: space-between;
-  font-style: 18px;
+  font-size: 18px;
 
   .item-name {
     width: 90%;

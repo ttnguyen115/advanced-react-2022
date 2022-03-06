@@ -2,10 +2,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import "./index.scss";
 
-function CustomButton({ children, isGoogleSignIn, ...buttonProps }) {
+function CustomButton({ children, isGoogleSignIn, inverted, ...buttonProps }) {
   return (
     <button
-      className={`${isGoogleSignIn ? "google-sign-in" : ""} custom-button`}
+      className={`
+        ${isGoogleSignIn ? "google-sign-in" : ""} 
+        ${inverted ? "inverted" : ""} 
+        custom-button`}
       {...buttonProps}
     >
       {children}
@@ -16,6 +19,7 @@ function CustomButton({ children, isGoogleSignIn, ...buttonProps }) {
 CustomButton.propTypes = {
   children: PropTypes.string.isRequired,
   isGoogleSignIn: PropTypes.bool,
+  inverted: PropTypes.bool,
 };
 
 export default React.memo(CustomButton);

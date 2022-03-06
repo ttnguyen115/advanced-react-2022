@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartIcon from "../../assets/CartIcon";
+import CartIcon from "../CartIcon";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase";
 import Cart from "../Cart";
