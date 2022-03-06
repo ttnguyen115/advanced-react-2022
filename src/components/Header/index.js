@@ -2,18 +2,20 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CartIcon from "../../assets/CartIcon";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase";
+import Cart from "../Cart";
 import "./index.scss";
 
 function Header() {
-  const { user } = useSelector((state) => state);
+  const { user, cart } = useSelector((state) => state);
   const currentUser = user;
+  const { isShow } = cart;
 
   const handleSignOut = () => {
     auth.signOut();
-    
-  }
+  };
 
   return (
     <div className="header-wrapper">
@@ -37,7 +39,9 @@ function Header() {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        {isShow ? <Cart /> : null}
       </div>
     </div>
   );
