@@ -1,13 +1,21 @@
+import createSagaMiddleware from "@redux-saga/core";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import logger from "redux-logger";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { fetchCollectionStart } from "./actions/shop";
 import cartReducer from "./reducers/cartReducer";
 import directoryReducer from "./reducers/directoryReducer";
 import shopReducer from "./reducers/shopReducer";
 import userReducer from "./reducers/userReducer";
 
-const middlewares = [logger];
+const sagaMiddleware = createSagaMiddleware();
+
+const middlewares = [sagaMiddleware];
+
+if (process.env.NODE_ENV === "development") {
+  middlewares.push(logger);
+}
 
 const persistConfig = {
   key: "root",
@@ -27,4 +35,6 @@ export const store = createStore(
   // {},
   applyMiddleware(...middlewares)
 );
+
+sagaMiddleware.run(fetchCollectionStart);
 export const persistor = persistStore(store);
