@@ -11,12 +11,11 @@ import ShoppingPage from "./views/ShoppingPage";
 
 function App() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
-  const { currentUser } = user;
+  const state = useSelector((state) => state);
+  const { currentUser } = state.user;
 
   React.useEffect(() => {
-    let unsubscribeFromAuth = null;
-    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {

@@ -1,8 +1,8 @@
-import { shopDataDefault } from "../../constants/dummy";
+// import { shopDataDefault } from "../../constants/dummy";
 import { shopTypes } from "../actions/shop/types";
 
 const initialState = {
-  collections: shopDataDefault,
+  collections: null,
 };
 
 const shopReducer = (state = initialState, action) => {

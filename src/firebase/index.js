@@ -33,7 +33,7 @@ const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-const addCollectionAndItems = async (collectionKey, objectsToAdd) => {
+const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = firestore.collection(collectionKey);
 
   const batch = firestore.batch();
@@ -59,7 +59,7 @@ const convertCollectionsSnapshotToMap = (collections) => {
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
-  }, {})
+  }, {});
 };
 
 firebase.initializeApp(config);
@@ -74,7 +74,7 @@ export { auth, firestore };
 export {
   signInWithGoogle,
   createUserProfileDocument,
-  addCollectionAndItems,
+  addCollectionAndDocuments,
   convertCollectionsSnapshotToMap,
 };
 export default firebase;
