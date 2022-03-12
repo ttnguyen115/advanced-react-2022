@@ -21,7 +21,7 @@ function ShoppingPage(props) {
 
   React.useEffect(() => {
     dispatch(fetchCollectionsRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="shopping-page">
