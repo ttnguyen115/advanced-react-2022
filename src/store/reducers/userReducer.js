@@ -22,18 +22,25 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
-      
-      case userTypes.EMAIL_SIGN_IN_SUCCESS:
-      case userTypes.GOOGLE_SIGN_IN_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          errorMessage: null,
+
+    case userTypes.SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: null,
         currentUser: payload,
       };
 
-    case userTypes.EMAIL_SIGN_IN_FAILURE:
-    case userTypes.GOOGLE_SIGN_IN_FAILURE:
+    case userTypes.SIGN_OUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        errorMessage: null,
+      };
+
+    case userTypes.SIGN_IN_FAILURE:
+    case userTypes.SIGN_UP_FAILURE:
+    case userTypes.SIGN_OUT_FAILURE:
       return {
         ...state,
         isLoading: false,

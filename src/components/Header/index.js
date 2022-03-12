@@ -1,21 +1,20 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartIcon from "../CartIcon";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { auth } from "../../firebase";
+import { signOutRequest } from "../../store/actions/userAction/actions";
 import Cart from "../Cart";
+import CartIcon from "../CartIcon";
 import "./index.scss";
 
 function Header() {
+  const dispatch = useDispatch();
   const { user, cart } = useSelector((state) => state);
-  const currentUser = user;
+  const { currentUser } = user;
   const { isShow } = cart;
 
-  const handleSignOut = () => {
-    auth.signOut();
-  };
+  const handleSignOut = () => dispatch(signOutRequest());
 
   return (
     <div className="header-wrapper">

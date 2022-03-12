@@ -62,6 +62,15 @@ const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -76,5 +85,6 @@ export {
   createUserProfileDocument,
   addCollectionAndDocuments,
   convertCollectionsSnapshotToMap,
+  getCurrentUser,
 };
 export default firebase;
