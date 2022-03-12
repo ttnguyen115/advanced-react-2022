@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import CollectionOverview from "../../components/CollectionOverview";
 import WithSpinner from "../../components/WithSpinner";
-import { fetchCollections } from "../../store/actions/shop";
+import { fetchCollectionsRequest } from "../../store/actions/shop/actions";
 import {
   selectCollections,
   selectCollectionsIsLoading,
@@ -20,8 +20,8 @@ function ShoppingPage(props) {
   const isLoading = selectCollectionsIsLoading(state);
 
   React.useEffect(() => {
-    dispatch(fetchCollections());
-  }, [dispatch]);
+    dispatch(fetchCollectionsRequest());
+  }, []);
 
   return (
     <div className="shopping-page">
