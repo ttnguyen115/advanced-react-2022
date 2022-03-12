@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { auth, createUserProfileDocument } from "../../firebase";
 import { signUpRequest } from "../../store/actions/userAction/actions";
 import CustomButton from "../CustomButton";
 import FormInput from "../FormInput";
@@ -8,10 +7,13 @@ import "./index.scss";
 
 function Signup(props) {
   const dispatch = useDispatch();
-  const [displayName, setDisplayName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [userCredentials, setUserCredentials] = React.useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,13 +21,13 @@ function Signup(props) {
       alert("password don't match");
       return;
     }
-    dispatch(signUpRequest({ displayName, email, password }))
+    dispatch(signUpRequest({ displayName, email, password }));
   };
 
-  const handleChangeDisplayName = (e) => setDisplayName(e.target.value);
-  const handleChangeEmail = (e) => setEmail(e.target.value);
-  const handleChangePassword = (e) => setPassword(e.target.value);
-  const handleChangeConfirmPassword = (e) => setConfirmPassword(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserCredentials({ ...userCredentials, [name]: value });
+  };
 
   return (
     <div className="sign-up">
@@ -36,7 +38,7 @@ function Signup(props) {
           type="text"
           name="displayName"
           value={displayName}
-          handleChange={handleChangeDisplayName}
+          handleChange={handleChange}
           required
           label="Display Name"
         />
@@ -44,7 +46,7 @@ function Signup(props) {
           type="email"
           name="email"
           value={email}
-          handleChange={handleChangeEmail}
+          handleChange={handleChange}
           required
           label="Email"
         />
@@ -53,7 +55,7 @@ function Signup(props) {
           name="password"
           value={password}
           required
-          handleChange={handleChangePassword}
+          handleChange={handleChange}
           label="Password"
         />
         <FormInput
@@ -61,7 +63,7 @@ function Signup(props) {
           name="confirmPassword"
           value={confirmPassword}
           required
-          handleChange={handleChangeConfirmPassword}
+          handleChange={handleChange}
           label="Confirm Password"
         />
         <CustomButton type="submit">SIGN UP</CustomButton>

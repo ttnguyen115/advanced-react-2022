@@ -10,15 +10,18 @@ import "./index.scss";
 
 function Signin(props) {
   const dispatch = useDispatch();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [userCredentials, setUserCredentials] = React.useState({ email: "", password: "" });
 
-  const handleChangeEmail = (e) => setEmail(e.target.value);
-  const handleChangePassword = (e) => setPassword(e.target.value);
+  const handleChange = e => {
+    const { value, name } = e.target;
+    setUserCredentials({...userCredentials, [name]: value });
+  }
+
   const handleClickSignInWithGoogle = () => dispatch(googleSignInRequest());
+  
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    dispatch(emailSignInRequest({ email, password }));
+    dispatch(emailSignInRequest(userCredentials));
   };
 
   return (
@@ -29,18 +32,18 @@ function Signin(props) {
         <FormInput
           name="email"
           type="email"
-          value={email}
+          value={userCredentials.email}
           required
           label="Email"
-          handleChange={handleChangeEmail}
+          handleChange={handleChange}
         />
         <FormInput
           name="password"
           type="password"
-          value={password}
+          value={userCredentials.password}
           required
           label="Password"
-          handleChange={handleChangePassword}
+          handleChange={handleChange}
         />
 
         <div className="buttons">
