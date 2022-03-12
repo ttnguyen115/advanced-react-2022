@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toggleCart } from "../../store/actions/cartAction";
+import { toggleCart } from "../../store/actions/cartAction/actions";
 import CartItem from "../CartItem";
 import CustomButton from "../CustomButton";
 import "./index.scss";

@@ -1,17 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { auth, createUserProfileDocument } from "../../firebase";
+import { signUpRequest } from "../../store/actions/userAction/actions";
 import CustomButton from "../CustomButton";
 import FormInput from "../FormInput";
 import "./index.scss";
 
 function Signup(props) {
-  const initUser = {
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
-  const [user, setUser] = React.useState(initUser);
+  const dispatch = useDispatch();
   const [displayName, setDisplayName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -19,23 +15,11 @@ function Signup(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { displayName, email, password, confirmPassword } = user;
-
     if (password !== confirmPassword) {
       alert("password don't match");
       return;
     }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      createUserProfileDocument(user, { displayName });
-      setUser(initUser);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(signUpRequest({ displayName, email, password }))
   };
 
   const handleChangeDisplayName = (e) => setDisplayName(e.target.value);

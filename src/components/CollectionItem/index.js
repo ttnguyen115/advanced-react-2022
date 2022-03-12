@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../store/actions/cartAction";
+import { addItem } from "../../store/actions/cartAction/actions";
 import CustomButton from "../CustomButton";
 import "./index.scss";
 

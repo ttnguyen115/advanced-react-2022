@@ -5,7 +5,7 @@ import {
   addItem,
   clearItemFromCart,
   removeItem,
-} from "../../store/actions/cartAction";
+} from "../../store/actions/cartAction/actions";
 import "./index.scss";
 
 function CheckoutItem({ cartItem }) {

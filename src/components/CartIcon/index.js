@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-import { toggleCart } from "../../store/actions/cartAction";
+import { toggleCart } from "../../store/actions/cartAction/actions";
 import { selectCartItemsCount } from "../../store/actions/cartAction/reselect";
 import "./index.scss";
 

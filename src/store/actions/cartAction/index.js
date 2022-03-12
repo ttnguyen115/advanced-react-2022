@@ -1,20 +1,15 @@
-import { cartTypes } from "./types";
+import { all, call, put, takeLatest } from "redux-saga/effects";
+import { userTypes } from "../userAction/types";
+import { clearCart } from "./actions";
 
-export const toggleCart = () => ({
-  type: cartTypes.TOGGLE_CART_HIDDEN,
-});
+function* clearCartOnSignOut() {
+  yield put(clearCart());
+}
 
-export const addItem = (item) => ({
-  type: cartTypes.ADD_ITEM,
-  payload: item,
-});
+function* onSignoutSuccess() {
+  yield takeLatest(userTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
+}
 
-export const removeItem = (item) => ({
-  type: cartTypes.REMOVE_ITEM,
-  payload: item,
-});
-
-export const clearItemFromCart = (item) => ({
-  type: cartTypes.CLEAR_ITEM_FROM_CART,
-  payload: item,
-});
+export function* cartSaga() {
+  yield all([call(onSignoutSuccess)]);
+}
